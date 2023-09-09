@@ -159,7 +159,7 @@ export class ElkM1Platform implements DynamicPlatformPlugin {
                         const device = {
                             area: this.area,
                             name: areaText.descriptionType,
-                            displayName: areaText.description,
+                            displayName: areaText.description ? areaText.description : `${areaText.descriptionType} ${this.area}`,
                             keypadCode: this.keypadCode,
                             elk: this.elk,
                         };
