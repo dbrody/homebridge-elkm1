@@ -1,6 +1,11 @@
 Changelog
 =========
 
+3.0.11
+-----
+
+- Update to try to fix retry timeout
+
 3.0.6
 -----
 

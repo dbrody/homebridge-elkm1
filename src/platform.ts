@@ -92,7 +92,6 @@ export class ElkM1Platform implements DynamicPlatformPlugin {
 
         this.elk.on('connected', () => {
             this.discoverDevices();
-            this.retryDelay = this.initialRetryDelay;
         });
 
         this.elk.on('ZC', (msg) => {
@@ -151,7 +150,7 @@ export class ElkM1Platform implements DynamicPlatformPlugin {
      */
     discoverDevices() {
         this.log.info('***Connected***');
-        this.elk.requestZoneStatusReport()
+        return this.elk.requestZoneStatusReport()
             .then((response) => {
                 this.log.debug('Requesting area description');
                 return this.elk.requestTextDescription(this.area, 1)
@@ -231,6 +230,7 @@ export class ElkM1Platform implements DynamicPlatformPlugin {
                         }
                         this.log.debug('Requesting arming status');
                         this.elk.requestArmingStatus();
+                        this.retryDelay = this.initialRetryDelay;
                         this.log.info('Startup complete');
                     });
             }).catch((error) => {
